@@ -13,6 +13,9 @@ import java.util.List;
  */
 public interface QuanLyKhachHangService {
     List<KhachHang> getData();
-//    List<KhachHang> Search (List<KhachHang> list,int max, int min);
+    List<KhachHang> Search (List<KhachHang> lists,int max, int min);
     List<KhachHang> sortBy();
+    String add(KhachHang kh);
+    String update(String makh,KhachHang kh,int index);
+    String delete( List<KhachHang> lists, String makh,int index);
 }

@@ -13,21 +13,53 @@ import service.QuanLyKhachHangService;
  *
  * @author Bânbân
  */
-public class QuanLyKhachHangServiceImpl implements QuanLyKhachHangService{
+public class QuanLyKhachHangServiceImpl implements QuanLyKhachHangService {
+
+    KhachHangRepository khr = new KhachHangRepository();
 
     @Override
     public List<KhachHang> getData() {
-        List<KhachHang> list = KhachHangRepository.readDB();
-        return list;
+        return khr.readDB();
+
     }
 
     @Override
     public List<KhachHang> sortBy() {
-        List<KhachHang> list = KhachHangRepository.sortByName();
-        return list;
+        return khr.sortByName();
     }
 
-    
+    @Override
+    public List<KhachHang> Search(List<KhachHang> lists, int max, int min) {
+
+        return khr.getTuoi(min, max);
+    }
+
+    @Override
+    public String add(KhachHang kh) {
+        boolean addKH = khr.add(kh);
+        if (addKH) {
+            return "Add thành công";
+        }
+        return "Add thất bại";
+    }
+
+    @Override
+    public String update(String makh, KhachHang kh,int index) {
+        boolean updateKH = khr.update(makh, kh);
+        if (updateKH) {
+            return "Update thành công";
+        }
+        return "Update thất bại";
+    }
+
+    @Override
+    public String delete(List<KhachHang> lists, String makh,int index) {
+        boolean deleteKH = khr.delete(makh);
+        if (deleteKH) {
+            return "Delete thành công";
+        }
+        return "Delete thất bại";
+    }
 
     
 
